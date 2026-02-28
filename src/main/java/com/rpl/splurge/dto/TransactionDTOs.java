@@ -1,4 +1,4 @@
-package com.rpl.dto;
+package com.rpl.splurge.dto;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -75,3 +75,4 @@ public class TransactionDTOs {
 	}
 
 }
+

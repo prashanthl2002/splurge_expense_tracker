@@ -1,4 +1,4 @@
-package com.rpl.service;
+package com.rpl.splurge.service;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rpl.dto.TransactionDTOs.CreateTransactionRequest;
-import com.rpl.dto.TransactionDTOs.SetBudgetRequest;
-import com.rpl.dto.TransactionDTOs.SummaryResponse;
-import com.rpl.dto.TransactionDTOs.TransactionResponse;
-import com.rpl.model.Budget;
-import com.rpl.model.Transaction;
-import com.rpl.repo.BudgetRepository;
-import com.rpl.repo.TransactionRepository;
+import com.rpl.splurge.dto.TransactionDTOs.CreateTransactionRequest;
+import com.rpl.splurge.dto.TransactionDTOs.SetBudgetRequest;
+import com.rpl.splurge.dto.TransactionDTOs.SummaryResponse;
+import com.rpl.splurge.dto.TransactionDTOs.TransactionResponse;
+import com.rpl.splurge.model.Budget;
+import com.rpl.splurge.model.Transaction;
+import com.rpl.splurge.repo.BudgetRepository;
+import com.rpl.splurge.repo.TransactionRepository;
 
 import lombok.RequiredArgsConstructor;
 

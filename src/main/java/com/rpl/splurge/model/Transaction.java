@@ -1,4 +1,4 @@
-package com.rpl.model;
+package com.rpl.splurge.model;
 
 import java.time.LocalDate;
 
@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "transactions")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Transaction {
 
     @Id
@@ -56,3 +56,4 @@ public class Transaction {
         }
     }
 }
+

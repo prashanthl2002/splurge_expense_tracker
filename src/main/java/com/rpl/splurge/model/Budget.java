@@ -1,11 +1,13 @@
-package com.rpl.model;
+package com.rpl.splurge.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Budget — stores how much the user wants to spend per month.
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
     uniqueConstraints = @UniqueConstraint(columnNames = {"userId", "month", "year"})
     // ^ prevents duplicate budget for same month
 )
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,7 +44,4 @@ public class Budget {
     @Column(nullable = false)
     private Double amount;   // e.g. 25000.0
 }
-
-
-
 
