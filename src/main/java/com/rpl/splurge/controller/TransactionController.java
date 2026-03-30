@@ -1,6 +1,7 @@
 package com.rpl.splurge.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import com.rpl.splurge.dto.TransactionDTOs.SetBudgetRequest;
 import com.rpl.splurge.dto.TransactionDTOs.SummaryResponse;
 import com.rpl.splurge.dto.TransactionDTOs.TransactionResponse;
 import com.rpl.splurge.model.Budget;
+import com.rpl.splurge.service.SpendAnalysis;
 import com.rpl.splurge.service.TransactionService;
 
 import jakarta.validation.Valid;
@@ -32,6 +34,9 @@ public class TransactionController {
 	
 	@Autowired
 	private TransactionService transactionService;
+	
+	@Autowired
+	private SpendAnalysis spendAnalysis;
 	
 	@PostMapping("/transactions")
 	public ResponseEntity<TransactionResponse> addTransaction(@Valid @RequestBody CreateTransactionRequest request) {
@@ -71,5 +76,22 @@ public class TransactionController {
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("Splurge API is running ✦");
     }
+	
+	@GetMapping("/ai/roast")
+	public ResponseEntity<Map<String, String>> roastSpending(
+	        @RequestParam(defaultValue = "#{T(java.time.LocalDate).now().monthValue}") int month,
+	        @RequestParam(defaultValue = "#{T(java.time.LocalDate).now().year}") int year) {
+
+	    SummaryResponse summary = transactionService.getSummary(month, year);
+
+	    String roast = spendAnalysis.analysisAndSpend(
+	        summary.getTotalSpent(),
+	        summary.getBudget(),
+	        summary.getRemaining(),
+	        summary.getByCategory()
+	    );
+
+	    return ResponseEntity.ok(Map.of("roast", roast));
+	}
 
 }
